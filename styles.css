@@ -1,9 +1,11 @@
 body {
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    height: 100vh;
+    background-color: beige;
 }
 
 .grid {
@@ -11,6 +13,8 @@ body {
     flex-wrap: wrap;
     width: 820px;
     height: 820px;
+
+    background-color: azure;
 }
 
 .cell {
@@ -19,4 +23,8 @@ body {
     margin: 0;
     box-sizing: border-box;
     aspect-ratio: 1;
+}
+
+.colored {
+    background-color: blue;
 }
