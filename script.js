@@ -2,6 +2,9 @@ const grid = document.querySelector(".grid");
 const button = document.querySelector("button.new");
 button.addEventListener("click", promptNewGrid);
 
+const blackenAttribute = "data-blacken";
+const blacken = .1;
+
 makeGrid(16);
 
 function promptNewGrid(e, msg = "New grid size: ") {
@@ -19,7 +22,13 @@ function promptNewGrid(e, msg = "New grid size: ") {
 }
 
 function color(e) {
-    this.style.backgroundColor = randomRGB();
+    const currBlacken = +this.getAttribute(blackenAttribute);
+    const newBlacken = Math.min(1, currBlacken + blacken);
+    if (currBlacken === 1) return;
+    this.setAttribute(blackenAttribute, newBlacken);
+
+    const newRGB = randomRGB();
+    this.style.backgroundColor = `${newRGB.slice(0,-1)},${1-newBlacken})`;
 }
 
 function makeGrid(gridSize) {
@@ -28,7 +37,8 @@ function makeGrid(gridSize) {
         
         cell.classList.add("cell");
         cell.style.width = `${100/gridSize}%`;
-        cell.addEventListener("mouseover", color, {once: true});
+        cell.addEventListener("mouseover", color);
+        cell.setAttribute(blackenAttribute, -blacken);
     
         grid.appendChild(cell);
     }
@@ -45,6 +55,6 @@ function randomRGB() {
     for (let i = 0; i < 3; i++) {
         out += `${Math.floor(Math.random() * 256)},`;
     }
-    out = out.substring(0, out.length-1) + ")";
+    out = out.slice(0, -1) + ")";
     return out;
 }
