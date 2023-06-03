@@ -19,7 +19,7 @@ function promptNewGrid(e, msg = "New grid size: ") {
 }
 
 function color(e) {
-    this.classList.add("colored");
+    this.style.backgroundColor = randomRGB();
 }
 
 function makeGrid(gridSize) {
@@ -38,4 +38,13 @@ function clearGrid() {
     while (grid.firstChild) {
         grid.removeChild(grid.lastChild);
     }
+}
+
+function randomRGB() {
+    let out = "rgb(";
+    for (let i = 0; i < 3; i++) {
+        out += `${Math.floor(Math.random() * 256)},`;
+    }
+    out = out.substring(0, out.length-1) + ")";
+    return out;
 }
