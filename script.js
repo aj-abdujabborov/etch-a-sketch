@@ -10,7 +10,7 @@ function promptNewGrid(e, msg = "New grid size: ") {
         promptNewGrid(e, "Size must be a number. ");
     }
     else if (gridSize < 1 || gridSize > 100) {
-        promptNewGrid(e, "Maximum size is 100. ");
+        promptNewGrid(e, "Size must be between 1 and 100. ");
     }
     else {
         clearGrid();
@@ -28,7 +28,7 @@ function makeGrid(gridSize) {
         
         cell.classList.add("cell");
         cell.style.width = `${100/gridSize}%`;
-        cell.addEventListener("mouseover", color);
+        cell.addEventListener("mouseover", color, {once: true});
     
         grid.appendChild(cell);
     }
