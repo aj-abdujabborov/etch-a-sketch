@@ -33,6 +33,7 @@ body {
     height: 820px;
 
     background-color: azure;
+    border: 2px solid black;
 }
 
 .cell {
@@ -43,8 +44,4 @@ body {
     aspect-ratio: 1;
 
     transition: all 0.1s;
-}
-
-.colored {
-    background-color: indigo;
 }
